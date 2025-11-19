@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecretWallpaper Dashboard</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; padding: 24px; background: #0f1220; color: #e8eaf0; }
+      .container { max-width: 920px; margin: 0 auto; }
+      h1 { font-size: 24px; margin: 0 0 12px; }
+      p { color: #b9bdd4; }
+      form { background: #171a2b; padding: 16px; border-radius: 12px; border: 1px solid #2a2f4e; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .field { display: flex; flex-direction: column; gap: 6px; }
+      .field label { font-size: 12px; color: #9aa1c0; }
+      .field input, .field select { padding: 8px; border-radius: 8px; border: 1px solid #2a2f4e; background: #0d1020; color: #e8eaf0; }
+      .actions { margin-top: 12px; display: flex; gap: 12px; align-items: center; }
+      button { background: #4c6fff; color: white; border: none; padding: 10px 16px; border-radius: 10px; cursor: pointer; font-weight: 600; }
+      button:disabled { opacity: 0.5; cursor: not-allowed; }
+      .output { margin-top: 20px; background: #171a2b; padding: 16px; border-radius: 12px; border: 1px solid #2a2f4e; }
+      .preview { max-width: 100%; border-radius: 8px; border: 1px solid #2a2f4e; }
+      code { background: #0d1020; padding: 2px 6px; border-radius: 6px; }
+      .row { display: flex; gap: 12px; align-items: center; }
+      .small { font-size: 12px; color: #9aa1c0; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>SecretWallpaper Dashboard</h1>
+      <p>Client-only generator for GitHub Pages. Upload an image, pick mode, tweak parameters, preview, and download. Nothing is saved on any server.</p>
+
+      <form id="form">
+        <div class="field">
+          <label>Image</label>
+          <input type="file" name="image" accept="image/*" required />
+        </div>
+
+        <div class="grid" style="margin-top: 12px;">
+          <div class="field">
+            <label>Mode</label>
+            <select name="mode">
+              <option value="repeat">Repeat grid</option>
+              <option value="mosaic">Mosaic tint (recreates image)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Tile size (px)</label>
+            <input type="number" name="tile" min="8" max="256" step="1" value="48" />
+          </div>
+          <div class="field">
+            <label>Scale</label>
+            <input type="number" name="scale" min="1" max="6" step="1" value="3" />
+          </div>
+          <div class="field">
+            <label>Output width</label>
+            <input type="number" name="out_w" min="320" max="8000" step="1" value="1080" />
+          </div>
+          <div class="field">
+            <label>Output height</label>
+            <input type="number" name="out_h" min="320" max="8000" step="1" value="1920" />
+          </div>
+          <div class="field">
+            <label>Tint strength (mosaic)</label>
+            <input type="number" name="tint" min="0" max="0.5" step="0.02" value="0.08" />
+          </div>
+          <div class="field">
+            <label>Format</label>
+            <select name="format">
+              <option value="jpg">JPG (smaller)</option>
+              <option value="png">PNG (lossless)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>JPEG quality</label>
+            <input type="number" name="jpg_quality" min="10" max="100" step="1" value="92" />
+          </div>
+          <div class="field">
+            <label>Preview (fast)</label>
+            <select name="preview">
+              <option value="false" selected>No</option>
+              <option value="true">Yes</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="submit" type="submit">Generate</button>
+          <span id="status" class="small"></span>
+        </div>
+      </form>
+
+      <div id="result" class="output" style="display:none;">
+        <div class="row" style="justify-content: space-between;">
+          <div>
+            <strong>Output</strong>
+            <div class="small" id="log"></div>
+          </div>
+          <a id="download" href="#" download>Download</a>
+        </div>
+        <div style="margin-top: 12px;">
+          <img id="img" class="preview" src="" alt="Generated wallpaper" />
+        </div>
+      </div>
+
+      <div class="small" style="margin-top: 24px;">
+        Runs entirely in your browser. Large outputs may be limited by device memory.
+      </div>
+    </div>
+
+    <script src="./public/script.js"></script>
+  </body>
+  </html>
