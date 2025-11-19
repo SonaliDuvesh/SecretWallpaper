@@ -25,6 +25,7 @@ git clone https://github.com/SonaliDuvesh/SecretWallpaper.git
 cd SecretWallpaper
 
 2. Put Your Image in the Same Folder and name it as
+
    myphoto.jpg
 
 SecretWallpaper performs perfectly when you feed it square-shaped images — it loves that 1:1 symmetry.
