@@ -24,9 +24,10 @@ How to Summon the Magic
 git clone https://github.com/SonaliDuvesh/SecretWallpaper.git
 cd SecretWallpaper
 
-2. Put Your Image in the Same Folder
+2. Put Your Image in the Same Folder and name it as
+   myphoto.jpg
 
-myphoto.jpg
+SecretWallpaper performs perfectly when you feed it square-shaped images — it loves that 1:1 symmetry.
 
 3. Install Dependencies
 
